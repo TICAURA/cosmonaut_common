@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+	<fontFamily name="Roboto">
+		<normal><![CDATA[fuentes/roboto/Roboto-Medium.ttf]]></normal>
+		<bold><![CDATA[fuentes/roboto/Roboto-Bold.ttf]]></bold>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+		<exportFonts/>
+	</fontFamily>
+</fontFamilies>

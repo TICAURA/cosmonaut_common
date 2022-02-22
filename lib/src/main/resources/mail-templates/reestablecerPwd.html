@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio de contraseña</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+    <style>
+
+
+
+
+
+
+
+
+     #linkespecial{
+       width: 100px;
+               background: #02beae;
+               color: white;
+               display: inline-block;
+               padding: 5px;
+               border: 0;
+               border-radius: 32px;
+               width:100%;
+               text-align:center;
+               text-decoration:none;
+               font-size:smaller;
+     }
+
+
+       #linkespecial:hover {
+           background: #19ddcd;
+       }
+       div{
+           margin:10px
+       }
+
+
+
+
+   </style>
+</head>
+
+<body>
+<div style="  background-color: #022538;
+  color: #efefef;
+  font-family: Roboto; margin: 15px 5px; padding:20px">
+    <div>
+        <img style="    width: 57px; float:left;"
+             src="https://storage.googleapis.com/cosmonaut-public-front/assets/imgs/logo.png">
+        <h2 style="   float: left;
+       height: 100%;
+       display: block;
+       padding-top: 8px; padding-left:10px;">Estimad@ <span th:text="${nombre}"></span></h2>
+    </div>
+    <hr style="  height: 3px;
+   background-color: #04bfae;
+   border: none;
+   width: 100%;">
+    <div style="    color: white;
+   margin: 0;
+   font-weight: bolder;">
+        <div>El cambio de contraseña se realizó con éxito </div>
+        <br><div>Tu nueva contraseña para ingresar al sistema es:</div>
+        <div class="mt-2"><span style="color:#04bfae">Contraseña: </span><span style="color:white" th:text="${pwd}"></span></div>
+        <br>
+        <div style="display: inline-block; color:white" >Saludos</div>
+     
+        <div style="width: 100%; text-align: center;">
+            <div style="display: inline-block;"><a id="linkespecial" href="https://www.cosmonaut.tech/index.html">Ingresar</a></div>
+        </div>
+    </div>
+    <div style="float: none; width: 100%; text-align: right;">
+        <span><em>Tú plataforma favorita... Cosmonaut</em></span>
+    </div>
+</div>
+
+
+</body>
+
+</html>
