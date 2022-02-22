@@ -8,7 +8,6 @@ import mx.com.ga.cosmonaut.common.entity.calculo.NcrBitacoraNomina;
 @JdbcRepository(dialect = Dialect.POSTGRES)
 public interface NcrBitacoraNominaRepository extends CrudRepository<NcrBitacoraNomina, Integer> {
 
-
     void deleteByNominaPeriodoId(Integer nominaXperiodoId);
 
     boolean existsByNominaPeriodoId(Integer nominaXperiodoId);

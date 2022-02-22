@@ -26,14 +26,14 @@ public interface NmaCuentaBancoRepository extends CrudRepository<NmaCuentaBanco,
     @Join(value = "bancoId", alias = "cb")
     @Join(value = "funcionCuentaId", alias = "fn")
     List<NmaCuentaBanco> findByNclCentrocClienteCentrocClienteId(Integer centrocClienteId);
-
+    
     @Join(value = "bancoId", alias = "cb")
     @Join(value = "funcionCuentaId", alias = "fn")
     List<NmaCuentaBanco> findByNclCentrocClienteCentrocClienteIdAndUsaStpIsNullOrUsaStp(Integer centrocClienteId, Boolean usaStp);
-
+    
     @Join(value = "bancoId", alias = "cb")
     NmaCuentaBanco findByNclCentrocClienteCentrocClienteIdAndUsaStp(Integer clienteId, Boolean usaStp);
-
+   
     @Query(value = "select * from nma_cuenta_banco where num_cuenta = :numeroCuenta", nativeQuery=true)
     NmaCuentaBanco findByNumeroCuenta(String numeroCuenta);
 
@@ -46,11 +46,11 @@ public interface NmaCuentaBancoRepository extends CrudRepository<NmaCuentaBanco,
 
     @Query(value="update nma_cuenta_banco set es_activo=false where clabe = :clabe", nativeQuery = true)
     NmaCuentaBanco update(String clabe);
-
+    
     void update(@Id Integer cuentaBancoId, boolean esActivo);
 
     @Query(value="select * from nma_cuenta_banco ncb where em_usa_stp = true and centroc_cliente_id = :idCliente", nativeQuery = true)
-    List<NmaCuentaBanco> obtieneSTP(Integer idCliente);
+     List<NmaCuentaBanco> obtieneSTP(Integer idCliente);
 
     boolean existsByNclCentrocClienteCentrocClienteId(Integer centrocClienteId);
 
@@ -62,15 +62,16 @@ public interface NmaCuentaBancoRepository extends CrudRepository<NmaCuentaBanco,
     boolean existsByNcoPersonaPersonaId(Integer personaId);
 
     List<NmaCuentaBanco> findByEsActivoOrderByDescripcion(Boolean activo);
-
-
+    
+    
     List<NmaCuentaBanco> findByNclCentrocClienteCentrocClienteIdAndFuncionCuentaIdFuncionCuentaIdIn(Integer centrocClienteId, List<Integer> funcionCuentaId);
 
     boolean existsByNumeroCuentaAndBancoIdBancoId(String numeroCuenta, Integer bancoId);
 
     boolean existsByNumeroCuentaAndBancoIdBancoIdAndNclCentrocClienteCentrocClienteId(String numeroCuenta, Integer bancoId,Integer centrocClienteId);
 
-    boolean existsByClabe(String clabe);
+    boolean existsByClabe(String clabe) ;
+
 
     boolean existsByClabeAndNclCentrocClienteCentrocClienteId(String clabe, Integer centrocClienteId);
 

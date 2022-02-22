@@ -18,5 +18,7 @@ public class VariabilidadFiltradoResponse {
     private Integer total_empleados;
     private Integer diasBimestre;
     private boolean recalcula;
+    private Date fechaInicio;
+    private Date fechaFin;
 
 }

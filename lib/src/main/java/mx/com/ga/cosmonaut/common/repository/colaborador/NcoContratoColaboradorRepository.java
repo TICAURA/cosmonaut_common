@@ -73,8 +73,8 @@ public interface NcoContratoColaboradorRepository extends CrudRepository<NcoCont
             "grupoNominaId.pago_complementario AS grupoNominaIdpago_complementario, grupoNominaId.nombre AS grupoNominaIdnombre,grupoNominaId.nombre_corto AS grupoNominaIdnombre_corto,grupoNominaId.esquema_pago_id AS grupoNominaIdesquema_pago_id,grupoNominaId.centroc_cliente_id AS grupoNominaIdcentroc_cliente_id,grupoNominaId.moneda_id AS grupoNominaIdmoneda_id,grupoNominaId.periodicidad_pago_id AS grupoNominaIdperiodicidad_pago_id,grupoNominaId.isr_aguinaldo_reglamento AS grupoNominaIdisr_aguinaldo_reglamento,grupoNominaId.es_automatica AS grupoNominaIdes_automatica,grupoNominaId.es_activo AS grupoNominaIdes_activo,grupoNominaId.es_predeterminado AS grupoNominaIdes_predeterminado,grupoNominaId.ajuste_mensual_isr AS grupoNominaIdajuste_mensual_isr,grupoNominaId.base_periodo_id AS grupoNominaIdbase_periodo_id,grupoNominaId.periodo_aguinaldo_id AS grupoNominaIdperiodo_aguinaldo_id,grupoNominaId.manera_calcular_subsidio AS grupoNominaIdmanera_calcular_subsidio,grupoNominaId.ajustar_base_gravable_faltantes AS grupoNominaIdajustar_base_gravable_faltantes,grupoNominaId.cuenta_banco_id AS grupoNominaIdcuenta_banco_id, " +
             "tipoCompensacionId.descripcion AS tipoCompensacionIddescripcion,tipoCompensacionId.nombre_corto AS tipoCompensacionIdnombre_corto,tipoCompensacionId.es_activo AS tipoCompensacionIdes_activo,tipoCompensacionId.fecha_alta AS tipoCompensacionIdfecha_alta " +
             "FROM nco_contrato_colaborador colaborador " +
-            "INNER JOIN (SELECT persona_id,MAX(fecha_inicio) fecha FROM nco_contrato_colaborador GROUP BY persona_id) colaborador_fecha " +
-            "ON colaborador.fecha_inicio = colaborador_fecha.fecha AND colaborador.persona_id = colaborador_fecha.persona_id " +
+            "INNER JOIN (SELECT persona_id,MAX(fecha_contrato) fecha FROM nco_contrato_colaborador GROUP BY persona_id) colaborador_fecha " +
+            "ON colaborador.fecha_contrato = colaborador_fecha.fecha AND colaborador.persona_id = colaborador_fecha.persona_id " +
             "INNER JOIN ncl_puesto puestoId ON colaborador.puesto_id=puestoId.puesto_id " +
             "INNER JOIN ncl_centroc_cliente centrocClienteId ON colaborador.centroc_cliente_id=centrocClienteId.centroc_cliente_id " +
             "INNER JOIN ncl_area areaId ON colaborador.area_id=areaId.area_id " +
@@ -146,7 +146,7 @@ public interface NcoContratoColaboradorRepository extends CrudRepository<NcoCont
             "INNER JOIN nco_persona personaId ON colaborador.persona_id=personaId.persona_id " +
             "AND colaborador.centroc_cliente_id = :centrocClienteId " +
             "AND colaborador.es_activo = :activo " +
-            "ORDER BY colaborador.persona_id",
+            "ORDER BY personaId.apellido_pat",
             nativeQuery = true)
     @Join(value = "areaId", alias = "areaId")
     @Join(value = "puestoId", alias = "puestoId")

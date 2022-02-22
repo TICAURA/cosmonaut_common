@@ -13,7 +13,6 @@ import java.util.Date;
 @MappedEntity(value = "nma_cliente_xcentro_costos")
 public class NmaClienteXcentroCostos implements Serializable {
 
-
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected NmaClienteXcentroCostosPK nmaClienteXcentroCostosPK;

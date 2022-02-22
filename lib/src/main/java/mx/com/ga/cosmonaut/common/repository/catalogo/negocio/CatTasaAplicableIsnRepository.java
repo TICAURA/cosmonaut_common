@@ -6,12 +6,8 @@ import mx.com.ga.cosmonaut.common.entity.catalogo.negocio.CatTasaAplicableIsn;
 import io.micronaut.data.repository.CrudRepository;
 import io.micronaut.data.jdbc.annotation.JdbcRepository;
 import io.micronaut.data.model.query.builder.sql.Dialect;
-import mx.com.ga.cosmonaut.common.entity.catalogo.negocio.CatValorReferencia;
 import mx.com.ga.cosmonaut.common.entity.catalogo.ubicacion.CatEstado;
-
-import javax.swing.text.html.Option;
 import java.math.BigDecimal;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +17,10 @@ import java.util.Set;
 public interface CatTasaAplicableIsnRepository extends CrudRepository<CatTasaAplicableIsn, Integer> {
     
     List<CatTasaAplicableIsn> findByEsActivo(Boolean activo);
- 
+
+    @Query(value="SELECT * FROM cat_tasa_aplicable_isn cta WHERE cta.tasa_aplicable_isn_id = :id and es_activo = true ", nativeQuery = true)
+    CatTasaAplicableIsn findByTasaAplicableIsnIdAndAndEsActivo(Integer id);
+
     @Join(value="cestado", alias ="edo")
     List<CatTasaAplicableIsn> findByEsActivoOrderByTasaAplicableIsnId(Boolean esActivo);
     
@@ -76,6 +75,20 @@ public interface CatTasaAplicableIsnRepository extends CrudRepository<CatTasaApl
             " and   cta.fecha_fin >= :fechaFin)) and \n" +
             " cta.c_estado = :estadoId and cta.es_activo = true ORDER BY cta.tasa_aplicable_isn_id ", nativeQuery = true)
     List<CatTasaAplicableIsn> findByIdEstadoEstadoTraslaparFechas(Integer estadoId,Date fechaInicio,Date fechaFin);
+
+
+    @Query(value = "SELECT * FROM cat_tasa_aplicable_isn cta WHERE   ((:fechaInicio  between cta.fecha_inicio and  cta.fecha_fin) \n" +
+            " or (:fechaFin  between cta.fecha_inicio and  cta.fecha_fin) or \n" +
+            " (cta.fecha_inicio <= :fechaInicio) \n" +
+            " and cta.fecha_fin >= :fechaFin or (cta.fecha_inicio >= :fechaInicio) \n" +
+            " and cta.fecha_fin <= :fechaFin ) and \n" +
+            " cta.c_estado = :estadoId and cta.es_activo = true \n" +
+            " EXCEPT SELECT * FROM cat_tasa_aplicable_isn cta \n" +
+            " WHERE cta.fecha_inicio = :fechaInicioOld and cta.fecha_fin = :fechaFinOld and cta.c_estado = :estadoId and cta.es_activo = true", nativeQuery = true)
+    List<CatTasaAplicableIsn> findByIdEstadoEstadoTraslaparFechasEditar(Integer estadoId,Date fechaInicio,Date fechaFin,Date fechaInicioOld,Date fechaFinOld);
+
+
+
 
     @Query(value = "SELECT *\n" +
             "FROM cat_tasa_aplicable_isn tasa \n" +

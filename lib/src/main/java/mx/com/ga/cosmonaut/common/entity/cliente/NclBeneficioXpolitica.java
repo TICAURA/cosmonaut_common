@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @MappedEntity(value = "ncl_beneficio_xpolitica")
 public class NclBeneficioXpolitica implements Serializable {
 
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(GeneratedValue.Type.IDENTITY)

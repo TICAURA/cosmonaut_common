@@ -13,7 +13,6 @@ import java.util.Date;
 @MappedEntity(value = "tmp_carga_colaborador")
 public class CargaMasivaEmpleado {
 
-
     @Id
     @GeneratedValue(GeneratedValue.Type.IDENTITY)
     @MappedProperty(value = "tmp_carga_colaborador_id")

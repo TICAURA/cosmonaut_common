@@ -36,7 +36,8 @@ public interface CatValorReferenciaRepository extends CrudRepository<CatValorRef
     @Query("SELECT * FROM cat_valor_referencia valor_referencia " +
             "INNER JOIN  cat_tipo_valor_referencia tipo_valor_referencia ON valor_referencia.tipo_valor_referencia_id = tipo_valor_referencia.tipo_valor_referencia_id\n" +
             "WHERE valor_referencia.tipo_valor_referencia_id = :tipoValorReferenciaId\n" +
-            "AND :fecha BETWEEN valor_referencia.fecha_inicio and valor_referencia.fecha_fin ")
+            "AND :fecha BETWEEN valor_referencia.fecha_inicio and valor_referencia.fecha_fin " +
+            "AND valor_referencia.es_activo")
     CatValorReferencia findByTipoValorReferenciaIdTipoValorReferenciaIdAndFechaBetween(Long tipoValorReferenciaId, Date fecha);
 
     @Query("SELECT COUNT(*) FROM cat_valor_referencia referencia WHERE ( :fechaInicio BETWEEN referencia.fecha_inicio AND referencia.fecha_fin or :fechaFin BETWEEN referencia.fecha_inicio AND referencia.fecha_fin) and tipo_valor_referencia_id = :tipoValorReferencia and es_activo = true")

@@ -11,7 +11,6 @@ import java.util.Date;
 @MappedEntity(value = "cat_anio_fiscal")
 public class CatAnioFiscal implements Serializable {
 
-
     private static final long serialVersionUID = 1L;
     @Id    
     @MappedProperty(value = "anio_ley")
